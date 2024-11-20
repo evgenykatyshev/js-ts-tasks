@@ -5,9 +5,31 @@
  */
 module.exports.diffElems = function diffElems(arr) {
 
-  let diffElemsNumber = 0;
+  let diffArr = [arr[0]];
+  let isDifferent = true;
+  let diffElemsNumber = 1;
 
-  arr for
+  for (let i = 0; i < arr.length; i++) {
+
+    for (let j = 0; j < diffElemsNumber; j++) {
+
+      if ( diffArr[j] === arr[i] ) {
+        isDifferent = false;
+        break;
+      }
+
+    }
+
+    if(isDifferent) {
+      diffArr.push( arr[i] );
+      diffElemsNumber++;
+    }
+
+    isDifferent = true;
+
+  }
 
   return diffElemsNumber;
+
+  //return new Set(arr).size; // Solution from the practical class
 };
