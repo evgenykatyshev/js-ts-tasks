@@ -19,7 +19,7 @@ module.exports.censorship = function censorship(forbidden) {
     let filler = ''
 
     for (let elem of forbidden) {
-      filler = elem.replaceAll(/./g, '*');
+      filler = elem.replaceAll(/./g, '*'); // flag g make regexp find all occurrences, not only first one
       censoredString = censoredString.replaceAll(elem, filler);
     }
 
