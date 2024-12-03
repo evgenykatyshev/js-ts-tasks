@@ -1,31 +1,27 @@
 class User {
-  #firstName = undefined;
-  #secondName = undefined;
-  #age = undefined;
+  #firstName;
+  #secondName;
+  #age;
 
   constructor(firstName, secondName, age) {
-    if (typeof firstName === 'string' && typeof secondName === 'string' && typeof age === 'number') {
-      this.firstName = firstName;
-      this.secondName = secondName;
-      this.age = age;
-    } else {
+    if (typeof firstName !== 'string' || typeof secondName !== 'string' || typeof age !== 'number') {
       throw new Error('Not all data have been provided');
     }
+
+    this.firstName = firstName;
+    this.secondName = secondName;
+    this.age = age;
   }
 
   set firstName(firstName) {
     if (typeof firstName === 'string') {
       this.#firstName = firstName;
-    } else {
-      this.#firstName = '';
     }
   }
 
   set secondName(secondName) {
     if (typeof secondName === 'string') {
       this.#secondName = secondName;
-    } else {
-      this.#secondName = '';
     }
   }
 
@@ -35,6 +31,7 @@ class User {
     }
   }
 
+  // These getters fail tests
   // get firstName() {
   //   return this.#firstName;
   // }
