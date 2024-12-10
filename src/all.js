@@ -4,5 +4,11 @@
  * @returns Promise
  */
 module.exports.all = function all(promisesArray) {
-  throw new Error('Not implemented'); // remove me and write your code
+  // The Promise.all() method returns a single Promise from a list of promises, when all promises fulfill.
+
+  for (let elem of promisesArray) {
+
+  }
+
+  return singlePromise;
 };
