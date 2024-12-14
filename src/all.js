@@ -4,11 +4,17 @@
  * @returns Promise
  */
 module.exports.all = function all(promisesArray) {
-  // The Promise.all() method returns a single Promise from a list of promises, when all promises fulfill.
-
-  for (let elem of promisesArray) {
-    test;
-  }
-
-  return singlePromise;
+  return new Promise((resolve, reject) => {
+    let results = [];
+    for (let i = 0; i < promisesArray.length; i++) {
+      promisesArray[i]
+        .then(result => {
+          results[i] = result;
+          if (i === promisesArray.length - 1) {
+            resolve(results);
+          }
+        })
+        .catch(error => reject(error));
+    }
+  });
 };
