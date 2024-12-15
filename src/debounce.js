@@ -6,5 +6,15 @@
  * @return {function}
  */
 module.exports.debounce = function debounce(fn, delay) {
-  throw new Error('Not implemented'); // remove me and write your code
+  let isRunning = false;
+
+  return function (arg) {
+    if (!isRunning) {
+      isRunning = true;
+      fn(arg);
+      setTimeout(() => {
+        isRunning = false;
+      }, delay);
+    }
+  };
 };
