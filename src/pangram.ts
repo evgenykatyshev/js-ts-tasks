@@ -5,6 +5,56 @@
  * @param {string|number} word
  * @returns {boolean}
  */
-module.exports.pangram = function (word: string | number): boolean {
-  throw new Error('Not implemented'); // delete this line and write your code
+module.exports.pangram = function (word: string | number): any {
+  let isPangram: any = false;
+  let arr: Array<string> = [];
+
+  const allLetters = [
+    'a',
+    'b',
+    'c',
+    'd',
+    'e',
+    'f',
+    'g',
+    'h',
+    'i',
+    'j',
+    'k',
+    'l',
+    'm',
+    'n',
+    'o',
+    'p',
+    'q',
+    'r',
+    's',
+    't',
+    'u',
+    'v',
+    'w',
+    'x',
+    'y',
+    'z',
+  ];
+  const allDigits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+  if (typeof word === 'string') {
+    arr = [
+      ...new Set(
+        word
+          .toLowerCase()
+          .replace(/[^a-z]/g, '')
+          .split('')
+      ),
+    ].sort();
+    isPangram = JSON.stringify(arr) === JSON.stringify(allLetters);
+  }
+
+  if (typeof word === 'number') {
+    arr = [...new Set(word.toString().split(''))].sort();
+    isPangram = JSON.stringify(arr) === JSON.stringify(allDigits);
+  }
+
+  return isPangram;
 };
