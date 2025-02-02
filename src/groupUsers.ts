@@ -15,40 +15,38 @@ type Address = {
   placeId: number;
 };
 
-type Employee = {
+type Person = {
   name: string;
   login: string;
   surname: string;
+};
+
+type Employee = Person & {
   type: 'EMPLOYEE';
   address: Address;
 };
 
-type Contractor = {
-  name: string;
-  login: string;
-  surname: string;
+type Contractor = Person & {
   type: 'CONTRACTOR';
   contractorCompanyName: string;
 };
 
-type Person = Employee | Contractor;
+type Contact = Employee | Contractor;
 
-module.exports.groupUsers = function (users: Array<Person>): Record<'employees' | 'contractors', Array<Person>> {
+module.exports.groupUsers = function (users: Array<Contact>): Record<'employees' | 'contractors', Array<Contact>> {
   // replace Array<unknown> with your own types
 
-  let employees: Employee[] = [];
-  let contractors: Contractor[] = [];
+  let employees: Array<Employee> = [];
+  let contractors: Array<Contractor> = [];
 
-  users.forEach((user: Person) => {
-    if (typeof user === 'object' && user !== undefined && user !== null) {
-      switch (user.type) {
-        case 'EMPLOYEE':
-          employees.push(user);
-          break;
-        case 'CONTRACTOR':
-          contractors.push(user);
-          break;
-      }
+  users.forEach((user: Contact) => {
+    switch (user.type) {
+      case 'EMPLOYEE':
+        employees.push(user);
+        break;
+      case 'CONTRACTOR':
+        contractors.push(user);
+        break;
     }
   });
 
