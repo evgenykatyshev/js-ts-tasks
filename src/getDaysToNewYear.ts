@@ -4,16 +4,19 @@
  * @returns {number}
  */
 module.exports.getDaysToNewYear = function getDaysToNewYear(targetDate: Date | string): number {
-  let nextNewYear: Date = new Date('2024-01-01');
+  const nextNewYear: Date = new Date('2024-01-01');
   let newTargetDate: Date = new Date(targetDate);
 
   if (typeof targetDate === 'string') {
     let splitting: (string | undefined)[] = targetDate.split('.');
 
     if (splitting[0] !== undefined && splitting[1] !== undefined && splitting[2] !== undefined) {
-      let targetDay: string = splitting[0];
-      let targetMonth: string = splitting[1];
-      let targetYear: string = splitting[2];
+      // let targetDay: string = splitting[0];
+      // let targetMonth: string = splitting[1];
+      // let targetYear: string = splitting[2];
+
+      let [targetDay, targetMonth, targetYear] = splitting;
+
       newTargetDate = new Date(`${targetYear}-${targetMonth}-${targetDay}`);
     }
   } else if (typeof targetDate === 'object') {
